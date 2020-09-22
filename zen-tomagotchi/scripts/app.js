@@ -1,18 +1,20 @@
 console.log('just do it');
 
-//_______________Zen Tomagotchi Block____________________
-//******************************************************* 
-//___________________Why Play?___________________________
+//_______________Zen Tomagotchi Block_____________
+
+//************************************************
+
+//___________________Why Play?____________________
 
 /* Zen block was created for individuals who want the experience of owning their own pet without all the hassle. It is an interactive game focused on the health and wellbeing of the user and pet! */
 
-//___________________User Story___________________________
+//___________________User Story___________________
 
 /* As the maker of Zen Block Tomagotchi,, I wanted to create an application for individuals who suffer from anxiety and depression. This game allows for users to interact with a pet Tomagotchi. Allowing for a sense of connection through positive reinforcement and growth. 
 
 This is not just a one-way street application. Zen Block Tomagotchi will also remind its user to eat, sleep, play, and meditate. This allows for a full circle user experience and will help individuals in their day-to-day living habits so that they stay balanced and healthy!  */
 
-//___________________Psuedocode___________________________
+//___________________Psuedocode___________________
 
 //---How will user be informed how to play? Pop-up on landing page welcoming user with directions and consequences to their actions.
 
@@ -27,16 +29,17 @@ This is not just a one-way street application. Zen Block Tomagotchi will also re
 //---What will you use to keep track of 2 minutes of life. A timer will be used to morph avatar. 
 
 //---Does the game end? Game ends when avatar dies.
+
 //---What happens when game ends? Popup comes up stating avatar has died and game is over. 
 
-//_________________Code Organization___________________________
+//_________________Code Organization______________
 
 //Global Variables
 //Event Listeners
 //Fuctions
 //Event Listeners
 
-//______________________STEP 1_________________________________
+//______________________STEP 1____________________
 
 //---Add listener to begin button in html
 
@@ -48,7 +51,36 @@ console.log('Button works');
 /*  setMorph(); */
 });
 
-//______________________STEP 2_________________________________
+//______________________STEP 2____________________
+
+//---Make Block Tomagotchi - instantiate from class
+
+//__________________PARENT CLASS__________________
+
+class Square {
+    constructor (name, color, health, sleepMode, meditation, play, age) {
+        this.name = name,
+        this.color = color,
+        this.health = health,
+        this.sleepMode = sleepMode,
+        this.meditation = meditation,
+        this.play = play,
+        this.age = age
+    }
+};
+
+class Square extends Tomagotchi {
+    constructor(name, color, health, sleepMode, meditation, play, age) {
+        super (name, color, health, sleepMode, meditation, play, age)
+    }
+};
+
+const zenBlock = new Square ();
+
+
+
+
+
 
 
 
