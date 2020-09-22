@@ -1,7 +1,7 @@
 console.log('just do it');
 
 //_______________Zen Tomagotchi Block____________________
-
+//******************************************************* 
 //___________________Why Play?___________________________
 
 /* Zen block was created for individuals who want the experience of owning their own pet without all the hassle. It is an interactive game focused on the health and wellbeing of the user and pet! */
@@ -28,4 +28,28 @@ This is not just a one-way street application. Zen Block Tomagotchi will also re
 
 //---Does the game end? Game ends when avatar dies.
 //---What happens when game ends? Popup comes up stating avatar has died and game is over. 
+
+//_________________Code Organization___________________________
+
+//Global Variables
+//Event Listeners
+//Fuctions
+//Event Listeners
+
+//______________________STEP 1_________________________________
+
+//---Add listener to begin button in html
+
+$('button').on('click', function(){
+console.log('Button works');
+/*  createTomagotchi(1);
+ startTimer(); */
+ $('button').off('click');
+/*  setMorph(); */
+});
+
+//______________________STEP 2_________________________________
+
+
+
 
