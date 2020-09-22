@@ -1,4 +1,4 @@
-console.log('just do it');
+/* console.log('just do it'); */
 
 //_______________Zen Tomagotchi Block_____________
 
@@ -41,10 +41,11 @@ This is not just a one-way street application. Zen Block Tomagotchi will also re
 
 //______________________STEP 1____________________
 
-//---Add listener to begin button in html
+//---Add listener to begin button in html & prompt
 
 $('button').on('click', function(){
-console.log('Button works');
+/* console.log('Button works'); */
+const promptSaying = prompt("What would you like to name your ZenBlock Tomagotchi?")
 /*  createTomagotchi(1);
  startTimer(); */
  $('button').off('click');
@@ -69,13 +70,14 @@ class Square {
     }
 };
 
-class Square extends Tomagotchi {
+class Tomagotchi extends Square {
     constructor(name, color, health, sleepMode, meditation, play, age) {
         super (name, color, health, sleepMode, meditation, play, age)
     }
 };
 
 const zenBlock = new Square ();
+
 
 
 
