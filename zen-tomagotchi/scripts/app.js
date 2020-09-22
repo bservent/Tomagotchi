@@ -1,6 +1,6 @@
 /* console.log('just do it'); */
 
-//_______________Zen Tomagotchi Block_____________
+//_______________ZenBlock Tomagotchi______________
 
 //************************************************
 
@@ -45,7 +45,7 @@ This is not just a one-way street application. Zen Block Tomagotchi will also re
 
 $('button').on('click', function(){
 /* console.log('Button works'); */
-const promptSaying = prompt("What would you like to name your ZenBlock Tomagotchi?")
+ zenBlock.nameTomagotchi();
 /*  createTomagotchi(1);
  startTimer(); */
  $('button').off('click');
@@ -74,9 +74,14 @@ class Tomagotchi extends Square {
     constructor(name, color, health, sleepMode, meditation, play, age) {
         super (name, color, health, sleepMode, meditation, play, age)
     }
+    nameTomagotchi(promptName) {
+        this.name = prompt("What would you like to name your ZenBlock Tomagotchi?")
+    }
 };
 
-const zenBlock = new Square ();
+const zenBlock = new Tomagotchi (); 
+
+
 
 
 
