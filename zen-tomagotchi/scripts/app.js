@@ -41,32 +41,38 @@ This is not just a one-way street application. Zen Block Tomagotchi will also re
 
 const startTime = 120;
 let time = startTime;
-let level = 1;
-
+let age = 1;
 
 //______________________STEP 1____________________
 
 //---Add listener to begin button in html & prompt
 
-$('button').on('click', function(){
+$('#start-button').on('click', function(){
  zenBlock.nameTomagotchi();
-/*  zenBlock.color(); */
+ zenBlock.colorTomagotchi();
+ zenBlock.hungerTomagotchi();
+/* sleepinessTomagotchi() */
  startTimer(); 
- $('button').off('click');
-/*  onLevel(); */
+ $('start-button').off('click');
+
+});
+
+$('#metric-hunger').on('click', function(){
+      zenBlock.incrementHunger();
+    $('#metric-hunger').text(`Hunger: ${zenBlock.hunger}`);
 });
 
 //______________________STEP 2____________________
-//make timer for health and age
+//make timer for levels
 
 const startTimer = function () {
     const timer = setInterval(function() {
         if (time === 0) {
             clearInterval(timer);
-            //increase level
-            level++;
-            $('#level').text(`Level: ${level}`)
-            onLevel();
+            //increase age
+            age++;
+            $('#age').text(`Age: ${age}`)
+            Age();
             return;
         
         }
@@ -75,11 +81,14 @@ const startTimer = function () {
     }, 1000);
 }
 
-const onLevel = function() {
-    if (level > 3) {
+//______________________STEP 3____________________
+//Levels and reset timer
+
+const Age = function() {
+    if (age > 5) {
         alert(`${zenBlock.name} has died of old age. Refresh to start over!`)
     } else {
-        time = Math.floor(startTime*level);
+        time = Math.floor(startTime*age);
         $('#timer').text(`Countdown: ${time}s`);
         //increase age
         alert(`${zenBlock.name} is one year older!`)
@@ -87,49 +96,64 @@ const onLevel = function() {
     }
 }
  
-//______________________STEP 3____________________
+//______________________STEP 4____________________
 
 //---Make Block Tomagotchi - instantiate from class
 
 //__________________PARENT CLASS__________________
 
 class Square {
-    constructor (name, color, health, sleepMode, meditation, play, age) {
+    constructor (name, color, hunger, sleepiness, meditation, play, age) {
         this.name = name,
         this.color = color,
-        this.health = health,
-        this.sleepMode = sleepMode,
+        this.hunger = hunger,
+        this.sleepiness = sleepiness,
         this.meditation = meditation,
-        this.play = play,
-        this.age = age
+        this.play = play
     }
 };
 
 class Tomagotchi extends Square {
-    constructor(name, color, health, sleepMode, meditation, play, age) {
-        super (name, color, health, sleepMode, meditation, play, age)
+    constructor(name, color, hunger, sleepiness, meditation, play) {
+        super (name, color, hunger, sleepiness, meditation, play)
     }
     nameTomagotchi(promptName) {
         this.name = prompt("Welcom to ZenBlock....etc...To proceed type a name for your ZenBlock Tomagotchi below.")
     }
-  /*   colorTomagotchi() {
-        this.colors = ['blue', 'red', 'green', 'violet'];
-        const randomIndex = Math.floor(Math.random() * colors.length);
-        return colors[randomIndex];
-    } */
-  /*      health() {start with 10 and decrements every minute 
+    colorTomagotchi() {
+        const colors = ['blue', 'red', 'green', 'violet'];
+        this.color = Math.floor(Math.random() * colors.length);
+        return this.color;
+        //not working get color
+    }  
 
+    hungerTomagotchi() { 
+        const randomHunger = Math.floor(Math.random() * 10);
+        this.hunger = randomHunger;
+        return this.hunger;
     }
-    sleepMode() {button "NITE NITE. Remember to way me up in the morning by clicking the button again!" "Good Morning!"
 
+    incrementHunger() {
+        this.hunger += 1
+        return this.hunger
     }
-    meditation() { adds one point to health
 
+
+   /*  sleepinessTomagotchi() {
+        this.sleepiness = randomSleepiness
+        const randomSleepiness = Math.floor(Math.random() * 10); */
+         //need to connect to button "NITE NITE. Remember to way me up in the morning by clicking the button again!" "Good Morning!"-subtract 1 pt
+   /*  }
+    meditationTomagotchi() { 
+        this.meditation = randomMeditation
+        const randomMeditation = Math.floor(Math.random() * 10);
+        //need to connect to button to subject one point every time button is clicked/30 meditation
     }
-    play() { adds one point to health
-
-    } */
-
+    play() { 
+        this.play = 
+        alert('Let\'s go for a block around the block')
+        //connect to animation
+    }  */
 }; 
 
 const zenBlock = new Tomagotchi (); 
