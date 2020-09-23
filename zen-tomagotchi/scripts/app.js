@@ -63,7 +63,7 @@ const startTimer = function () {
     const timer = setInterval(function() {
         if (time === 0) {
             clearInterval(timer);
-            //increase age and level
+            //increase level
             level++;
             $('#level').text(`Level: ${level}`)
             onLevel();
@@ -79,9 +79,11 @@ const onLevel = function() {
     if (level > 3) {
         alert(`${zenBlock.name} has died of old age. Refresh to start over!`)
     } else {
+        time = Math.floor(startTime*level);
         $('#timer').text(`Countdown: ${time}s`);
+        //increase age
         alert(`${zenBlock.name} is one year older!`)
-        startTimer
+        startTimer();
     }
 }
  
