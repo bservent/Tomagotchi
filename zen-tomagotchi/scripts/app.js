@@ -51,6 +51,7 @@ $('#start-button').on('click', function(){
  zenBlock.nameTomagotchi();
  zenBlock.colorTomagotchi();
  zenBlock.hungerTomagotchi();
+ $('#metric-hunger').text(`Hunger: ${zenBlock.hunger}`)
 /* sleepinessTomagotchi() */
  startTimer(); 
  $('start-button').off('click');
@@ -58,7 +59,7 @@ $('#start-button').on('click', function(){
 });
 
 $('#metric-hunger').on('click', function(){
-      zenBlock.incrementHunger();
+      zenBlock.decrementHunger();
     $('#metric-hunger').text(`Hunger: ${zenBlock.hunger}`);
 });
 
@@ -122,9 +123,9 @@ class Tomagotchi extends Square {
     }
     colorTomagotchi() {
         const colors = ['blue', 'red', 'green', 'violet'];
-        this.color = Math.floor(Math.random() * colors.length);
-        return this.color;
-        //not working get color
+        const randomIndex = Math.floor(Math.random() * colors.length);
+        this.color = colors[randomIndex];
+        return colors[randomIndex];
     }  
 
     hungerTomagotchi() { 
@@ -133,8 +134,8 @@ class Tomagotchi extends Square {
         return this.hunger;
     }
 
-    incrementHunger() {
-        this.hunger += 1
+    decrementHunger() {
+        this.hunger -= 1
         return this.hunger
     }
 
