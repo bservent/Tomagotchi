@@ -39,20 +39,53 @@ This is not just a one-way street application. Zen Block Tomagotchi will also re
 //Fuctions
 //Event Listeners
 
+const startTime = 120;
+let time = startTime;
+let level = 1;
+
+
 //______________________STEP 1____________________
 
 //---Add listener to begin button in html & prompt
 
 $('button').on('click', function(){
-/* console.log('Button works'); */
  zenBlock.nameTomagotchi();
-/*  createTomagotchi(1);
- startTimer(); */
+/*  zenBlock.color(); */
+ startTimer(); 
  $('button').off('click');
-/*  setMorph(); */
+/*  onLevel(); */
 });
 
 //______________________STEP 2____________________
+//make timer for health and age
+
+const startTimer = function () {
+    const timer = setInterval(function() {
+        if (time === 0) {
+            clearInterval(timer);
+            //increase age and level
+            level++;
+            $('#level').text(`Level: ${level}`)
+            onLevel();
+            return;
+        
+        }
+        time--;
+        $('#timer').text(`Countdown: ${time}s`);
+    }, 1000);
+}
+
+const onLevel = function() {
+    if (level > 3) {
+        alert(`${zenBlock.name} has died of old age. Refresh to start over!`)
+    } else {
+        $('#timer').text(`Countdown: ${time}s`);
+        alert(`${zenBlock.name} is one year older!`)
+        startTimer
+    }
+}
+ 
+//______________________STEP 3____________________
 
 //---Make Block Tomagotchi - instantiate from class
 
@@ -75,13 +108,29 @@ class Tomagotchi extends Square {
         super (name, color, health, sleepMode, meditation, play, age)
     }
     nameTomagotchi(promptName) {
-        this.name = prompt("What would you like to name your ZenBlock Tomagotchi?")
+        this.name = prompt("Welcom to ZenBlock....etc...To proceed type a name for your ZenBlock Tomagotchi below.")
     }
-};
+  /*   colorTomagotchi() {
+        this.colors = ['blue', 'red', 'green', 'violet'];
+        const randomIndex = Math.floor(Math.random() * colors.length);
+        return colors[randomIndex];
+    } */
+  /*      health() {start with 10 and decrements every minute 
+
+    }
+    sleepMode() {button "NITE NITE. Remember to way me up in the morning by clicking the button again!" "Good Morning!"
+
+    }
+    meditation() { adds one point to health
+
+    }
+    play() { adds one point to health
+
+    } */
+
+}; 
 
 const zenBlock = new Tomagotchi (); 
-
-
 
 
 

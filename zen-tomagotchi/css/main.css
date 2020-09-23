@@ -1,4 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     background: violet;
     font-family: 'Roboto Mono', monospace;
+    padding: 0;
+    margin: 0;
 }
+
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    float: right;
+    margin-right: 20%;
+    color: green;
+  }
