@@ -30,13 +30,14 @@ button {
     border-radius: 20px;
     color: green;
     font-size: 18px;
+    border: 2px solid white;
 }
 
 #start-button {
     font-size: 24px;
     display: flex;
     justify-content: center;
-    margin-left: 42%;
+    margin-left: 43%;
     margin-top: 25%;
     margin-bottom: 10%;
     position: absolute;
@@ -46,7 +47,7 @@ button {
     display: flex;
     position: absolute;
     top: 87%;
-    left: 85%;
+    left: 83%;
     color: white;
     font-size: 24px;
 }
@@ -55,7 +56,7 @@ button {
     display: flex;
     position: absolute;
     top: 83%;
-    left: 94%;
+    left: 92%;
     font-size: 20px;
 }
 
@@ -67,6 +68,17 @@ button {
 
 .block {
     position: absolute;
-    right: 40%;
-    top: 40%;
+    right: 42%;
+    top: 55%;
+    max-width: 225px;
+    animation: fadeInDown;
+    animation-duration: 3s; 
+    border: 5px solid black;
 }
+
+button #sleep-mode {
+    position: absolute;
+}
+
+
+
