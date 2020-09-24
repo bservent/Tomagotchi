@@ -65,3 +65,8 @@ button {
     left: 2%;
 }
 
+.block {
+    position: absolute;
+    right: 40%;
+    top: 40%;
+}
