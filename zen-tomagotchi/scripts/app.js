@@ -65,8 +65,6 @@ $('#start-button').on('click', function(){
  zenBlock.playTomagotchi();
  $('#metric-play').text(`Play: ${zenBlock.play}`)
 
- zenBlock.incrementDeath();
-
  startTimer(); 
  $('start-button').off('click');
 
@@ -110,6 +108,7 @@ const startTimer = function () {
             return;
         
         }
+        time--;
         if (time % 60 === 0) {
             zenBlock.hunger +=1
             $('#metric-hunger').text(`Hunger: ${zenBlock.hunger}`);
@@ -119,8 +118,8 @@ const startTimer = function () {
             $('#metric-meditation').text(`Meditation: ${zenBlock.meditation}`);
             zenBlock.play += 1
             $('#metric-play').text(`Play: ${zenBlock.play}`);
+            zenBlock.incrementDeath();
         }
-        time--;
         $('#timer').text(`Countdown: ${time}s`);
     }, 1000);
 }
@@ -207,12 +206,12 @@ class Tomagotchi extends Square {
         if (this.play > 0) {this.play -= 1}
         return this.play
     } 
-/*     incrementDeath() {
+    incrementDeath() {
         if (this.hunger === 10 || this.sleepiness === 10 || this.meditation === 10|| this.play === 10) {
-            console.log(`${this.name} HAS DIED! PLEASE GO MEDITATE AND TRY AGAIN!`)
+            prompt(`${this.name} HAS DIED! PLEASE GO MEDITATE AND TRY AGAIN!`)
         }
         
-    } */
+    }
 }; 
 
 const zenBlock = new Tomagotchi (); 
