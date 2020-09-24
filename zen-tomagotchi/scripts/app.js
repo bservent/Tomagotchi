@@ -209,8 +209,7 @@ class Tomagotchi extends Square {
     incrementDeath() {
         if (this.hunger === 10 || this.sleepiness === 10 || this.meditation === 10|| this.play === 10) {
             prompt(`${this.name} HAS DIED! PLEASE GO MEDITATE AND TRY AGAIN!`)
-        }
-        
+        } 
     }
 }; 
 
