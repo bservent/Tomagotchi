@@ -48,20 +48,53 @@ let age = 1;
 //---Add listener to begin button in html & prompt
 
 $('#start-button').on('click', function(){
+
  zenBlock.nameTomagotchi();
+
  zenBlock.colorTomagotchi();
+
  zenBlock.hungerTomagotchi();
  $('#metric-hunger').text(`Hunger: ${zenBlock.hunger}`)
-/* sleepinessTomagotchi() */
+
+ zenBlock.meditationTomagotchi();
+ $('#metric-meditation').text(`Meditation: ${zenBlock.meditation}`)
+
+ zenBlock.sleepinessTomagotchi();                   
+ $('#metric-sleepiness').text(`Sleepiness: ${zenBlock.sleepiness}`)
+
+ zenBlock.playTomagotchi();
+ $('#metric-play').text(`Play: ${zenBlock.play}`)
+
+ zenBlock.incrementDeath();
+
  startTimer(); 
  $('start-button').off('click');
 
 });
 
+
 $('#metric-hunger').on('click', function(){
       zenBlock.decrementHunger();
     $('#metric-hunger').text(`Hunger: ${zenBlock.hunger}`);
 });
+
+$('#metric-sleepiness').on('click', function(){
+    zenBlock.decrementSleepiness();
+  $('#metric-sleepiness').text(`Sleepiness: ${zenBlock.sleepiness}`);
+});
+
+$('#metric-meditation').on('click', function(){
+    zenBlock.decrementMeditation();
+  $('#metric-meditation').text(`Meditation: ${zenBlock.meditation}`);
+});
+
+$('#metric-play').on('click', function(){
+    zenBlock.decrementPlay();
+  $('#metric-play').text(`Play: ${zenBlock.play}`);
+});
+
+
+
 
 //______________________STEP 2____________________
 //make timer for levels
@@ -76,6 +109,16 @@ const startTimer = function () {
             Age();
             return;
         
+        }
+        if (time % 60 === 0) {
+            zenBlock.hunger +=1
+            $('#metric-hunger').text(`Hunger: ${zenBlock.hunger}`);
+            zenBlock.sleepiness +=1
+            $('#metric-sleepiness').text(`Sleepiness: ${zenBlock.sleepiness}`);
+            zenBlock.meditation +=1
+            $('#metric-meditation').text(`Meditation: ${zenBlock.meditation}`);
+            zenBlock.play += 1
+            $('#metric-play').text(`Play: ${zenBlock.play}`);
         }
         time--;
         $('#timer').text(`Countdown: ${time}s`);
@@ -93,6 +136,7 @@ const Age = function() {
         $('#timer').text(`Countdown: ${time}s`);
         //increase age
         alert(`${zenBlock.name} is one year older!`)
+        //morph Zenblock
         startTimer();
     }
 }
@@ -104,7 +148,7 @@ const Age = function() {
 //__________________PARENT CLASS__________________
 
 class Square {
-    constructor (name, color, hunger, sleepiness, meditation, play, age) {
+    constructor (name, color, hunger, sleepiness, meditation, play) {
         this.name = name,
         this.color = color,
         this.hunger = hunger,
@@ -127,34 +171,48 @@ class Tomagotchi extends Square {
         this.color = colors[randomIndex];
         return colors[randomIndex];
     }  
-
     hungerTomagotchi() { 
         const randomHunger = Math.floor(Math.random() * 10);
         this.hunger = randomHunger;
         return this.hunger;
     }
-
     decrementHunger() {
-        this.hunger -= 1
+        if (this.hunger > 0) {this.hunger -= 1}
         return this.hunger
     }
-
-
-   /*  sleepinessTomagotchi() {
-        this.sleepiness = randomSleepiness
-        const randomSleepiness = Math.floor(Math.random() * 10); */
-         //need to connect to button "NITE NITE. Remember to way me up in the morning by clicking the button again!" "Good Morning!"-subtract 1 pt
-   /*  }
-    meditationTomagotchi() { 
-        this.meditation = randomMeditation
-        const randomMeditation = Math.floor(Math.random() * 10);
-        //need to connect to button to subject one point every time button is clicked/30 meditation
+    sleepinessTomagotchi() {
+        const randomSleepiness = Math.floor(Math.random() * 10);
+        this.sleepiness = randomSleepiness;
+        return this.sleepiness;
     }
-    play() { 
-        this.play = 
-        alert('Let\'s go for a block around the block')
-        //connect to animation
-    }  */
+    decrementSleepiness() {
+        if (this.sleepiness > 0) {this.sleepiness -= 1}
+        return this.sleepiness
+    }
+    meditationTomagotchi() { 
+        const randomMeditation = Math.floor(Math.random() * 10);
+        this.meditation = randomMeditation;
+        return this.meditation;
+    }
+    decrementMeditation() {
+        if (this.meditation > 0) {this.meditation -= 1}
+        return this.meditation
+    }
+    playTomagotchi() { 
+        const randomPlay = Math.floor(Math.random() * 10);
+        this.play = randomPlay;
+        return this.play;
+    } 
+    decrementPlay() {
+        if (this.play > 0) {this.play -= 1}
+        return this.play
+    } 
+/*     incrementDeath() {
+        if (this.hunger === 10 || this.sleepiness === 10 || this.meditation === 10|| this.play === 10) {
+            console.log(`${this.name} HAS DIED! PLEASE GO MEDITATE AND TRY AGAIN!`)
+        }
+        
+    } */
 }; 
 
 const zenBlock = new Tomagotchi (); 
