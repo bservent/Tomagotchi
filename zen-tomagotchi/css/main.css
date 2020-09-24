@@ -5,25 +5,63 @@
 body {
     background-image: url(https://images.unsplash.com/photo-1599766276214-46e0152236d4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2000&q=80);
     font-family: 'Roboto Mono', monospace;
-    color: white;
-    position: fixed; 
+    opacity: .8;
+    color: white; 
     background-size: cover;
     background-repeat: none;
     min-width: 100%;
     min-height: 100%;
-    padding: 0;
-    margin: 0;
 }
-
-
 
 h1 {
+    font-size: 45px;
     display: flex;
     justify-content: center;
+    margin-top: 7%;
+    margin-bottom: 7%;
+    position: relative;
 }
 
+h3 {
+    font-size: 24px;
+}
+ 
 button {
-    float: right;
-    margin-right: 20%;
+    border-radius: 20px;
     color: green;
+    font-size: 18px;
+}
+
+#start-button {
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    margin-left: 42%;
+    margin-top: 25%;
+    margin-bottom: 10%;
+    position: absolute;
   }
+
+.timer-metrics #timer {
+    display: flex;
+    position: absolute;
+    top: 87%;
+    left: 85%;
+    color: white;
+    font-size: 24px;
+}
+
+.timer-metrics #age {
+    display: flex;
+    position: absolute;
+    top: 83%;
+    left: 94%;
+    font-size: 20px;
+}
+
+.tomagotchi {
+    position: absolute;
+    top: 79%;
+    left: 2%;
+}
+
