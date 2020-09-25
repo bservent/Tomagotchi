@@ -73,10 +73,10 @@ $('#start-button').on('click', function(){
 
  zenBlock.playTomagotchi();
  $('#metric-play').text(`Play: ${zenBlock.play}`)
-
+ 
  startTimer(); 
  $('start-button').off('click');
-
+ 
 });
 
 
@@ -118,7 +118,10 @@ const startTimer = function () {
         
         }
         time--;
-        if (time % 60 === 0) {
+        if (zenBlock.hunger === 10 || zenBlock.sleepiness === 10 ||  zenBlock.play === 10) {
+            zenBlock.incrementDeath();
+        } 
+        else if (time % 60 === 0) {
             zenBlock.hunger +=1 
             $('#metric-hunger').text(`Hunger: ${zenBlock.hunger}`);
             zenBlock.sleepiness +=1 
@@ -127,9 +130,6 @@ const startTimer = function () {
             $('#metric-meditation').text(`Meditation: ${zenBlock.meditation}`);
             zenBlock.play += 1
             $('#metric-play').text(`Play: ${zenBlock.play}`);
-        }
-        else if (this.hunger === 10 || this.sleepiness === 10 || this.meditation === 10|| this.play === 10) {
-            zenBlock.incrementDeath();
         }
         $('#timer').text(`Countdown: ${time}s`);
     }, 1000);
@@ -141,15 +141,16 @@ const startTimer = function () {
 const Age = function() {
     if (age > 5) {
         alert(`${zenBlock.name} has died of old age. Refresh to start over!`)            
-    } else if (zenBlock.hunger < 10 || zenBlock.sleepiness < 10 || zenBlock.meditation < 10 || zenBlock.play < 10) {
+    } else if 
+    (zenBlock.hunger === 10 || zenBlock.sleepiness === 10 || zenBlock.play === 10) {
+        zenBlock.incrementDeath();
+    } else {
         time = Math.floor(startTime*age);
         $('#timer').text(`Countdown: ${time}s`);
         //increase age
         alert(`${zenBlock.name} is one year older!`)
         startTimer();
-    } else {
-        
-    }
+    } 
 }
  
 //______________________STEP 4____________________
@@ -172,18 +173,24 @@ class Square {
 class Tomagotchi extends Square {
     constructor(name, animation, hunger, sleepiness, meditation, play) {
         super (name, animation, hunger, sleepiness, meditation, play)
+        this.animations = [
+            "https://media.giphy.com/media/No3Q2COl8SEnu/giphy.gif",
+            "https://media.giphy.com/media/oymLI9X9aKdcG48kVi/giphy.gif",
+            "https://media.giphy.com/media/Xd7QqFPv4IVAz8dnog/giphy.gif", 
+            "https://media.giphy.com/media/QXUEh5XL3YzAyq6dFQ/giphy-downsized-large.gif",
+            "https://media.giphy.com/media/3oz8xKWgHhcq3LtAKA/giphy.gif"]
     }
     nameTomagotchi(promptName) {
         this.name = prompt("Welcom to ZenBlock....etc...To proceed type a name for your ZenBlock Tomagotchi below.")
     }
     animationTomagotchi() {
-        const animations = ["https://media.giphy.com/media/No3Q2COl8SEnu/giphy.gif", "https://media.giphy.com/media/oymLI9X9aKdcG48kVi/giphy.gif", "https://media.giphy.com/media/Xd7QqFPv4IVAz8dnog/giphy.gif", "https://media.giphy.com/media/QXUEh5XL3YzAyq6dFQ/giphy-downsized-large.gif", "https://media.giphy.com/media/3oz8xKWgHhcq3LtAKA/giphy.gif"];
-        const randomIndex = Math.floor(Math.random() * animations.length);
-        this.animation = animations[randomIndex];
+        //const animations = ["https://media.giphy.com/media/No3Q2COl8SEnu/giphy.gif", "https://media.giphy.com/media/oymLI9X9aKdcG48kVi/giphy.gif", "https://media.giphy.com/media/Xd7QqFPv4IVAz8dnog/giphy.gif", "https://media.giphy.com/media/QXUEh5XL3YzAyq6dFQ/giphy-downsized-large.gif", "https://media.giphy.com/media/3oz8xKWgHhcq3LtAKA/giphy.gif"];
+        const randomIndex = Math.floor(Math.random() * this.animations.length);
+        this.animation = this.animations[randomIndex];
         document.getElementsByClassName("block")[0].src = this.animation;
         document.getElementsByClassName("block")[0].style.display = "block";
-        /* animations[randomIndex].shift() */
-        return animations[randomIndex];
+        this.animations.splice(randomIndex, 1)
+        return this.animation;
     }  
     hungerTomagotchi() { 
         const randomHunger = Math.floor(Math.random() * 10);
