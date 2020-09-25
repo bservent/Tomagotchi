@@ -56,14 +56,17 @@ $('#start-button').on('click', function(){
  document.getElementById("zen-mode")
  document.getElementById("zen-mode").style.visibility = "visible";
 
- document.getElementById("zen-mode")
- document.getElementById("zen-mode").style.visibility = "visible";
- 
+ document.getElementById("timer")
+ document.getElementById("timer").style.visibility = "visible";
+
+ document.getElementById("age")
+ document.getElementById("age").style.visibility = "visible";
+
+ document.getElementById("tomagotchi")
+ document.getElementById("tomagotchi").style.visibility = "visible";
+
  zenBlock.hungerTomagotchi();
  $('#metric-hunger').text(`Hunger: ${zenBlock.hunger}`)
-
-/*  zenBlock.meditationTomagotchi();
- $('#metric-meditation').text(`Meditation: ${zenBlock.meditation}`) */
 
  zenBlock.sleepinessTomagotchi();                   
  $('#metric-sleepiness').text(`Sleepiness: ${zenBlock.sleepiness}`)
@@ -116,14 +119,16 @@ const startTimer = function () {
         }
         time--;
         if (time % 60 === 0) {
-            zenBlock.hunger +=1
+            zenBlock.hunger +=1 
             $('#metric-hunger').text(`Hunger: ${zenBlock.hunger}`);
-            zenBlock.sleepiness +=1
+            zenBlock.sleepiness +=1 
             $('#metric-sleepiness').text(`Sleepiness: ${zenBlock.sleepiness}`);
             zenBlock.meditation +=1
             $('#metric-meditation').text(`Meditation: ${zenBlock.meditation}`);
             zenBlock.play += 1
             $('#metric-play').text(`Play: ${zenBlock.play}`);
+        }
+        else if (this.hunger === 10 || this.sleepiness === 10 || this.meditation === 10|| this.play === 10) {
             zenBlock.incrementDeath();
         }
         $('#timer').text(`Countdown: ${time}s`);
@@ -135,13 +140,15 @@ const startTimer = function () {
 
 const Age = function() {
     if (age > 5) {
-        alert(`${zenBlock.name} has died of old age. Refresh to start over!`)
-    } else {
+        alert(`${zenBlock.name} has died of old age. Refresh to start over!`)            
+    } else if (zenBlock.hunger < 10 || zenBlock.sleepiness < 10 || zenBlock.meditation < 10 || zenBlock.play < 10) {
         time = Math.floor(startTime*age);
         $('#timer').text(`Countdown: ${time}s`);
         //increase age
         alert(`${zenBlock.name} is one year older!`)
         startTimer();
+    } else {
+        
     }
 }
  

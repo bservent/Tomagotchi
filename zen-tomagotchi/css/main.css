@@ -44,7 +44,7 @@ button {
     position: absolute;
   }
 
-.timer-metrics #timer {
+#timer {
     display: flex;
     visibility: hidden;
     position: absolute;
@@ -54,7 +54,7 @@ button {
     font-size: 24px;
 }
 
-.timer-metrics #age {
+#age {
     display: flex;
     visibility: hidden;
     position: absolute;
@@ -63,7 +63,8 @@ button {
     font-size: 20px;
 }
 
-.tomagotchi {
+
+#tomagotchi {
     visibility: hidden;
     position: absolute;
     top: 79%;
@@ -73,8 +74,8 @@ button {
 .block {
     position: absolute;
     display: none;
-    right: 40%;
-    top: 35%;
+    right: 38.5%;
+    top: 30%;
     max-width: 350px;
     animation: fadeInDown;
     animation-duration: 3s; 
