@@ -8,7 +8,8 @@ body {
     opacity: .8;
     color: white;
     background-size: cover;
-    background-repeat: none;
+    background-repeat: no-repeat;
+    background-position: fixed;
     min-width: 100%;
     min-height: 100%;
 }
@@ -28,7 +29,7 @@ h3 {
  
 button {
     border-radius: 20px;
-    color: green;
+    color: black;
     font-size: 18px;
     border: 2px solid black;
 }
@@ -45,6 +46,7 @@ button {
 
 .timer-metrics #timer {
     display: flex;
+    visibility: hidden;
     position: absolute;
     top: 87%;
     left: 83%;
@@ -54,6 +56,7 @@ button {
 
 .timer-metrics #age {
     display: flex;
+    visibility: hidden;
     position: absolute;
     top: 83%;
     left: 92%;
@@ -61,20 +64,28 @@ button {
 }
 
 .tomagotchi {
+    visibility: hidden;
     position: absolute;
     top: 79%;
     left: 2%;
 }
 
 .block {
-    visibility: hidden;
     position: absolute;
-    right: 39%;
+    display: none;
+    right: 40%;
     top: 35%;
     max-width: 350px;
     animation: fadeInDown;
     animation-duration: 3s; 
     border: 5px solid black; 
+}
+
+#zen-mode {
+    visibility: hidden;
+    position: absolute;
+    right: 3%;
+    top: 3%;
 }
 
 

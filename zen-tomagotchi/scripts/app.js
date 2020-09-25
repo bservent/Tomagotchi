@@ -53,11 +53,17 @@ $('#start-button').on('click', function(){
 
  zenBlock.animationTomagotchi();
 
+ document.getElementById("zen-mode")
+ document.getElementById("zen-mode").style.visibility = "visible";
+
+ document.getElementById("zen-mode")
+ document.getElementById("zen-mode").style.visibility = "visible";
+ 
  zenBlock.hungerTomagotchi();
  $('#metric-hunger').text(`Hunger: ${zenBlock.hunger}`)
 
- zenBlock.meditationTomagotchi();
- $('#metric-meditation').text(`Meditation: ${zenBlock.meditation}`)
+/*  zenBlock.meditationTomagotchi();
+ $('#metric-meditation').text(`Meditation: ${zenBlock.meditation}`) */
 
  zenBlock.sleepinessTomagotchi();                   
  $('#metric-sleepiness').text(`Sleepiness: ${zenBlock.sleepiness}`)
@@ -81,10 +87,8 @@ $('#metric-sleepiness').on('click', function(){
   $('#metric-sleepiness').text(`Sleepiness: ${zenBlock.sleepiness}`);
 });
 
-$('#metric-meditation').on('click', function(){
-    zenBlock.decrementMeditation();
+$('#zen-mode').on('click', function(){
     zenBlock.changeBackColor();
-  $('#metric-meditation').text(`Meditation: ${zenBlock.meditation}`);
 });
 
 $('#metric-play').on('click', function(){
@@ -137,7 +141,6 @@ const Age = function() {
         $('#timer').text(`Countdown: ${time}s`);
         //increase age
         alert(`${zenBlock.name} is one year older!`)
-        //morph Zenblock
         startTimer();
     }
 }
@@ -171,12 +174,15 @@ class Tomagotchi extends Square {
         const randomIndex = Math.floor(Math.random() * animations.length);
         this.animation = animations[randomIndex];
         document.getElementsByClassName("block")[0].src = this.animation;
-        document.getElementsByClassName("block")[0].style.visibility = "visible";
+        document.getElementsByClassName("block")[0].style.display = "block";
+        /* animations[randomIndex].shift() */
         return animations[randomIndex];
     }  
     hungerTomagotchi() { 
         const randomHunger = Math.floor(Math.random() * 10);
         this.hunger = randomHunger;
+        document.getElementById("metric-hunger").attr = this.hunger;
+        document.getElementById("metric-hunger").style.visibility = "visible";
         return this.hunger;
     }
     decrementHunger() {
@@ -186,13 +192,15 @@ class Tomagotchi extends Square {
     sleepinessTomagotchi() {
         const randomSleepiness = Math.floor(Math.random() * 10);
         this.sleepiness = randomSleepiness;
+        document.getElementById("metric-sleepiness").attr = this.sleepiness;
+        document.getElementById("metric-sleepiness").style.visibility = "visible";
         return this.sleepiness;
     }
     decrementSleepiness() {
         if (this.sleepiness > 0) {this.sleepiness -= 1}
         return this.sleepiness
     }
-    meditationTomagotchi() { 
+/*     meditationTomagotchi() { 
         const randomMeditation = Math.floor(Math.random() * 10);
         this.meditation = randomMeditation;
         return this.meditation;
@@ -200,7 +208,7 @@ class Tomagotchi extends Square {
     decrementMeditation() {
         if (this.meditation > 0) {this.meditation -= 1}
         return this.meditation
-    }
+    } */
     changeBackColor() {
         document.body.style.background = 'black';
         setTimeout(function(){
@@ -211,6 +219,8 @@ class Tomagotchi extends Square {
     playTomagotchi() { 
         const randomPlay = Math.floor(Math.random() * 10);
         this.play = randomPlay;
+        document.getElementById("metric-play").attr = this.play;
+        document.getElementById("metric-play").style.visibility = "visible";
         return this.play;
     } 
     decrementPlay() {
