@@ -51,7 +51,7 @@ $('#start-button').on('click', function(){
 
  zenBlock.nameTomagotchi();
 
- zenBlock.colorTomagotchi();
+ zenBlock.animationTomagotchi();
 
  zenBlock.hungerTomagotchi();
  $('#metric-hunger').text(`Hunger: ${zenBlock.hunger}`)
@@ -83,6 +83,7 @@ $('#metric-sleepiness').on('click', function(){
 
 $('#metric-meditation').on('click', function(){
     zenBlock.decrementMeditation();
+    zenBlock.changeBackColor();
   $('#metric-meditation').text(`Meditation: ${zenBlock.meditation}`);
 });
 
@@ -103,6 +104,7 @@ const startTimer = function () {
             clearInterval(timer);
             //increase age
             age++;
+            zenBlock.animationTomagotchi();
             $('#age').text(`Age: ${age}`)
             Age();
             return;
@@ -147,9 +149,9 @@ const Age = function() {
 //__________________PARENT CLASS__________________
 
 class Square {
-    constructor (name, color, hunger, sleepiness, meditation, play) {
+    constructor (name, animation, hunger, sleepiness, meditation, play) {
         this.name = name,
-        this.color = color,
+        this.animation = animation,
         this.hunger = hunger,
         this.sleepiness = sleepiness,
         this.meditation = meditation,
@@ -158,17 +160,19 @@ class Square {
 };
 
 class Tomagotchi extends Square {
-    constructor(name, color, hunger, sleepiness, meditation, play) {
-        super (name, color, hunger, sleepiness, meditation, play)
+    constructor(name, animation, hunger, sleepiness, meditation, play) {
+        super (name, animation, hunger, sleepiness, meditation, play)
     }
     nameTomagotchi(promptName) {
         this.name = prompt("Welcom to ZenBlock....etc...To proceed type a name for your ZenBlock Tomagotchi below.")
     }
-    colorTomagotchi() {
-        const colors = ['blue', 'red', 'green', 'violet'];
-        const randomIndex = Math.floor(Math.random() * colors.length);
-        this.color = colors[randomIndex];
-        return colors[randomIndex];
+    animationTomagotchi() {
+        const animations = ["https://media.giphy.com/media/No3Q2COl8SEnu/giphy.gif", "https://media.giphy.com/media/oymLI9X9aKdcG48kVi/giphy.gif", "https://media.giphy.com/media/Xd7QqFPv4IVAz8dnog/giphy.gif", "https://media.giphy.com/media/QXUEh5XL3YzAyq6dFQ/giphy-downsized-large.gif", "https://media.giphy.com/media/3oz8xKWgHhcq3LtAKA/giphy.gif"];
+        const randomIndex = Math.floor(Math.random() * animations.length);
+        this.animation = animations[randomIndex];
+        document.getElementsByClassName("block")[0].src = this.animation;
+        document.getElementsByClassName("block")[0].style.visibility = "visible";
+        return animations[randomIndex];
     }  
     hungerTomagotchi() { 
         const randomHunger = Math.floor(Math.random() * 10);
@@ -196,6 +200,13 @@ class Tomagotchi extends Square {
     decrementMeditation() {
         if (this.meditation > 0) {this.meditation -= 1}
         return this.meditation
+    }
+    changeBackColor() {
+        document.body.style.background = 'black';
+        setTimeout(function(){
+        document.body.style.background = 'white';
+        document.body.style.backgroundImage = "url(https://images.unsplash.com/photo-1599766276214-46e0152236d4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2000&q=80)"
+        }, 30000);
     }
     playTomagotchi() { 
         const randomPlay = Math.floor(Math.random() * 10);
