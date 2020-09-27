@@ -46,29 +46,38 @@ button {
 
 #timer {
     display: flex;
-    visibility: hidden;
+  /*   visibility: hidden; */
+    display: none;
     position: absolute;
     top: 87%;
     left: 83%;
     color: white;
     font-size: 24px;
+    animation: fadeIn;
+    animation-duration: 3s;
 }
 
 #age {
     display: flex;
-    visibility: hidden;
+    display: none;
+    /* visibility: hidden; */
     position: absolute;
     top: 83%;
     left: 92%;
     font-size: 20px;
+    animation: fadeIn;
+    animation-duration: 3s;
 }
 
 
 #tomagotchi {
-    visibility: hidden;
+    /* visibility: hidden; */
+    display: none;
     position: absolute;
     top: 79%;
     left: 2%;
+    animation: fadeIn;
+    animation-duration: 3s;
 }
 
 .block {
@@ -83,10 +92,13 @@ button {
 }
 
 #zen-mode {
-    visibility: hidden;
+    /* visibility: hidden; */
+    display: none;
     position: absolute;
     right: 3%;
-    top: 3%;
+    top: 4%;
+    animation: fadeIn;
+    animation-duration: 3s;
 }
 
 

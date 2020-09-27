@@ -54,16 +54,16 @@ $('#start-button').on('click', function(){
  zenBlock.animationTomagotchi();
 
  document.getElementById("zen-mode")
- document.getElementById("zen-mode").style.visibility = "visible";
+ document.getElementById("zen-mode").style.display = "block";
 
  document.getElementById("timer")
- document.getElementById("timer").style.visibility = "visible";
+ document.getElementById("timer").style.display = "block";
 
  document.getElementById("age")
- document.getElementById("age").style.visibility = "visible";
+ document.getElementById("age").style.display = "block";
 
  document.getElementById("tomagotchi")
- document.getElementById("tomagotchi").style.visibility = "visible";
+ document.getElementById("tomagotchi").style.display = "inline-block";
 
  zenBlock.hungerTomagotchi();
  $('#metric-hunger').text(`Hunger: ${zenBlock.hunger}`)
@@ -82,20 +82,24 @@ $('#start-button').on('click', function(){
 
 $('#metric-hunger').on('click', function(){
       zenBlock.decrementHunger();
+      prompt('Thank you for feeding me!');
     $('#metric-hunger').text(`Hunger: ${zenBlock.hunger}`);
 });
 
 $('#metric-sleepiness').on('click', function(){
     zenBlock.decrementSleepiness();
+    prompt('I\'m going to just sleep this off');
   $('#metric-sleepiness').text(`Sleepiness: ${zenBlock.sleepiness}`);
 });
 
 $('#zen-mode').on('click', function(){
+    prompt('Meditate with me? Let\'s focus on the block in the center of the screen. Maybe we can notice our breath as well!');
     zenBlock.changeBackColor();
 });
 
 $('#metric-play').on('click', function(){
     zenBlock.decrementPlay();
+    prompt('Yay! Play time!');
   $('#metric-play').text(`Play: ${zenBlock.play}`);
 });
 
@@ -196,7 +200,7 @@ class Tomagotchi extends Square {
         const randomHunger = Math.floor(Math.random() * 10);
         this.hunger = randomHunger;
         document.getElementById("metric-hunger").attr = this.hunger;
-        document.getElementById("metric-hunger").style.visibility = "visible";
+        document.getElementById("metric-hunger").style.display = "inline-block";
         return this.hunger;
     }
     decrementHunger() {
@@ -207,7 +211,7 @@ class Tomagotchi extends Square {
         const randomSleepiness = Math.floor(Math.random() * 10);
         this.sleepiness = randomSleepiness;
         document.getElementById("metric-sleepiness").attr = this.sleepiness;
-        document.getElementById("metric-sleepiness").style.visibility = "visible";
+        document.getElementById("metric-sleepiness").style.display = "inline-block";
         return this.sleepiness;
     }
     decrementSleepiness() {
@@ -228,13 +232,13 @@ class Tomagotchi extends Square {
         setTimeout(function(){
         document.body.style.background = 'white';
         document.body.style.backgroundImage = "url(https://images.unsplash.com/photo-1599766276214-46e0152236d4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2000&q=80)"
-        }, 30000);
+        }, 60000);
     }
     playTomagotchi() { 
         const randomPlay = Math.floor(Math.random() * 10);
         this.play = randomPlay;
         document.getElementById("metric-play").attr = this.play;
-        document.getElementById("metric-play").style.visibility = "visible";
+        document.getElementById("metric-play").style.display = "inline-block";
         return this.play;
     } 
     decrementPlay() {
