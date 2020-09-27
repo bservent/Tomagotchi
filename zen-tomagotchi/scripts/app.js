@@ -12,19 +12,19 @@
 
 /* As the maker of Zen Block Tomagotchi,, I wanted to create an application for individuals who suffer from anxiety and depression. This game allows for users to interact with a pet Tomagotchi. Allowing for a sense of connection through positive reinforcement and growth. 
 
-This is not just a one-way street application. Zen Block Tomagotchi will also remind its user to eat, sleep, play, and meditate. This allows for a full circle user experience and will help individuals in their day-to-day living habits so that they stay balanced and healthy!  */
+This is not just a one-way street application. Zen Block Tomagotchi will also remind its user to eat, sleep, play, and meditate. This allows for a full circle user experience and will help individuals in their day-to-day living habits so that they can stay balanced and healthy!  */
 
 //___________________Psuedocode___________________
 
 //---How will user be informed how to play? Pop-up on landing page welcoming user with directions and consequences to their actions.
 
-//---How will user begin playing? There will be a start button that will then trigger a pop up that will allow the user to name their tomagotchi. Their zen avatar block will then appear in play mode on the screen.
+//---How will user begin playing? There will be a start button that will then trigger a pop up that will allow the user to name their tomagotchi. After naming their zen avatar, the block will then appear in play mode on the screen.
 
-//---How will user interact with avatar? There will be button to feed/water, meditate, play, ligths on/off and sleep (all will be on a 1-10 scale or y/n). There will also be metrics keeping track of hunger/thirst, sleepiness, play, meditation, and age. When avatar gets to a certain age/health it will morph. The avatar will die if certain metric levels are not met.
+//---How will user interact with avatar? There will be button to hunger, play, sleep,lights on/off and sleep (all will be on a 1-10 scale or y/n). There will also be metrics keeping track of hunger/thirst, sleepiness, play, and age. When avatar gets to a certain age/health it will morph. The avatar will die if certain metric levels are not met.
 
-//---What are the specifications for tomagotchi morph/die? Morphing will require tomagotchi to stay alive for 2 minutes. A tomagotchi will die if hunger, play, meditation, and sleepiness hits 10.
+//---What are the specifications for tomagotchi morph/die? Morphing will require tomagotchi to stay alive for 2 minutes. A tomagotchi will die if hunger, play, and sleepiness hits 10.
 
-//---What will morphed avatar look like? A block square will be added inside the tomagotchi
+//---What will morphed avatar look like? A block animation will change.
 
 //---What will you use to keep track of 2 minutes of life. A timer will be used to morph avatar. 
 
@@ -37,7 +37,6 @@ This is not just a one-way street application. Zen Block Tomagotchi will also re
 //Global Variables
 //Event Listeners
 //Fuctions
-//Event Listeners
 
 const startTime = 120;
 let time = startTime;
@@ -45,13 +44,15 @@ let age = 1;
 
 //______________________STEP 1____________________
 
-//---Add listener to begin button in html & prompt
+//---Add event listener to start button and call functions
 
 $('#start-button').on('click', function(){
 
  zenBlock.nameTomagotchi();
 
  zenBlock.animationTomagotchi();
+
+ //---Displaying buttons & headings on page after ZenBlock has been named
 
  document.getElementById("zen-mode")
  document.getElementById("zen-mode").style.display = "block";
@@ -65,6 +66,8 @@ $('#start-button').on('click', function(){
  document.getElementById("tomagotchi")
  document.getElementById("tomagotchi").style.display = "inline-block";
 
+ //---Initializing random metric units for hunger, sleepiness, and play
+
  zenBlock.hungerTomagotchi();
  $('#metric-hunger').text(`Hunger: ${zenBlock.hunger}`)
 
@@ -74,33 +77,39 @@ $('#start-button').on('click', function(){
  zenBlock.playTomagotchi();
  $('#metric-play').text(`Play: ${zenBlock.play}`)
  
+ //---Starting timer countdown for age/morph levels and incrementing metrics
+
  startTimer(); 
+
+ //---Turn start button off after it has been clicked once
+
  $('start-button').off('click');
  
 });
 
+//---Metric and Zen-Mode event listeners
 
 $('#metric-hunger').on('click', function(){
       zenBlock.decrementHunger();
-      prompt('Thank you for feeding me!');
+      prompt('Thank you for feeding!');
     $('#metric-hunger').text(`Hunger: ${zenBlock.hunger}`);
 });
 
 $('#metric-sleepiness').on('click', function(){
     zenBlock.decrementSleepiness();
-    prompt('I\'m going to just sleep this off');
+    prompt('I\'m going to just sleep this off.');
   $('#metric-sleepiness').text(`Sleepiness: ${zenBlock.sleepiness}`);
-});
-
-$('#zen-mode').on('click', function(){
-    prompt('Meditate with me? Let\'s focus on the block in the center of the screen. Maybe we can notice our breath as well!');
-    zenBlock.changeBackColor();
 });
 
 $('#metric-play').on('click', function(){
     zenBlock.decrementPlay();
     prompt('Yay! Play time!');
   $('#metric-play').text(`Play: ${zenBlock.play}`);
+});
+
+$('#zen-mode').on('click', function(){
+    prompt('Meditate with me? Let\'s focus on the block in the center of the screen. Maybe we can notice our breath as well? Click ok to begin one-minute of Zen-Mode!');
+    zenBlock.changeBackColor();
 });
 
 
@@ -115,6 +124,7 @@ const startTimer = function () {
             clearInterval(timer);
             //increase age
             age++;
+            //morph animation
             zenBlock.animationTomagotchi();
             $('#age').text(`Age: ${age}`)
             Age();
@@ -144,7 +154,7 @@ const startTimer = function () {
 
 const Age = function() {
     if (age > 5) {
-        alert(`${zenBlock.name} has died of old age. Refresh to start over!`)            
+        alert(`${zenBlock.name} has died of old age. Refresh the page to start over.`)            
     } else if 
     (zenBlock.hunger === 10 || zenBlock.sleepiness === 10 || zenBlock.play === 10) {
         zenBlock.incrementDeath();
@@ -159,7 +169,7 @@ const Age = function() {
  
 //______________________STEP 4____________________
 
-//---Make Block Tomagotchi - instantiate from class
+//---Make Block Tomagotchi - instantiate from parent class and make methods
 
 //__________________PARENT CLASS__________________
 
@@ -185,10 +195,10 @@ class Tomagotchi extends Square {
             "https://media.giphy.com/media/3oz8xKWgHhcq3LtAKA/giphy.gif"]
     }
     nameTomagotchi(promptName) {
-        this.name = prompt("Welcom to ZenBlock....etc...To proceed type a name for your ZenBlock Tomagotchi below.")
+        //---Intro to game
+        this.name = prompt("Welcome to ZenBlock Tomagotchi! To keep your ZenBlock alive make sure to click the metric buttons in the lower left corner. The buttons will go up one point for every minute! If any of the buttons reaches to 10 your ZenBlock will die. So the more you interact with your ZenBlock the greater the chance you will keep it alive! Some features of this game include your ZenBlock morphing when the timer reaches 0. And if you are looking for a moment of meditation click on the Zen-Mode in the upper right corner of your screen. To proceed please type a name for your ZenBlock Tomagotchi below and click ok.")
     }
     animationTomagotchi() {
-        //const animations = ["https://media.giphy.com/media/No3Q2COl8SEnu/giphy.gif", "https://media.giphy.com/media/oymLI9X9aKdcG48kVi/giphy.gif", "https://media.giphy.com/media/Xd7QqFPv4IVAz8dnog/giphy.gif", "https://media.giphy.com/media/QXUEh5XL3YzAyq6dFQ/giphy-downsized-large.gif", "https://media.giphy.com/media/3oz8xKWgHhcq3LtAKA/giphy.gif"];
         const randomIndex = Math.floor(Math.random() * this.animations.length);
         this.animation = this.animations[randomIndex];
         document.getElementsByClassName("block")[0].src = this.animation;
@@ -218,15 +228,6 @@ class Tomagotchi extends Square {
         if (this.sleepiness > 0) {this.sleepiness -= 1}
         return this.sleepiness
     }
-/*     meditationTomagotchi() { 
-        const randomMeditation = Math.floor(Math.random() * 10);
-        this.meditation = randomMeditation;
-        return this.meditation;
-    }
-    decrementMeditation() {
-        if (this.meditation > 0) {this.meditation -= 1}
-        return this.meditation
-    } */
     changeBackColor() {
         document.body.style.background = 'black';
         setTimeout(function(){
