@@ -15,9 +15,9 @@ body {
 }
 
 h1 {
-    font-size: 45px;
     display: flex;
     justify-content: center;
+    font-size: 45px;
     margin-top: 7%;
     margin-bottom: 7%;
     position: relative;
@@ -29,24 +29,20 @@ h3 {
  
 button {
     border-radius: 20px;
-    color: black;
     font-size: 18px;
+    color: black;
     border: 2px solid black;
 }
 
 #start-button {
-    font-size: 24px;
-    display: flex;
-    justify-content: center;
     margin-left: 42%;
     margin-top: 25%;
     margin-bottom: 10%;
     position: absolute;
+    font-size: 24px;
   }
 
 #timer {
-    display: flex;
-  /*   visibility: hidden; */
     display: none;
     position: absolute;
     top: 87%;
@@ -58,9 +54,7 @@ button {
 }
 
 #age {
-    display: flex;
     display: none;
-    /* visibility: hidden; */
     position: absolute;
     top: 83%;
     left: 92%;
@@ -71,7 +65,6 @@ button {
 
 
 #tomagotchi {
-    /* visibility: hidden; */
     display: none;
     position: absolute;
     top: 79%;
@@ -92,7 +85,6 @@ button {
 }
 
 #zen-mode {
-    /* visibility: hidden; */
     display: none;
     position: absolute;
     right: 3%;
