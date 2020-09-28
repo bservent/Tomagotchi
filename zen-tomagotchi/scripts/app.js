@@ -1,18 +1,8 @@
-/* console.log('just do it'); */
+
 
 //_______________ZenBlock Tomagotchi______________
 
 //************************************************
-
-//___________________Why Play?____________________
-
-/* Zen block was created for individuals who want the experience of owning their own pet without all the hassle. It is an interactive game focused on the health and wellbeing of the user and pet! */
-
-//___________________User Story___________________
-
-/* As the maker of Zen Block Tomagotchi,, I wanted to create an application for individuals who suffer from anxiety and depression. This game allows for users to interact with a pet Tomagotchi. Allowing for a sense of connection through positive reinforcement and growth. 
-
-This is not just a one-way street application. Zen Block Tomagotchi will also remind its user to eat, sleep, play, and meditate. This allows for a full circle user experience and will help individuals in their day-to-day living habits so that they can stay balanced and healthy!  */
 
 //___________________Psuedocode___________________
 

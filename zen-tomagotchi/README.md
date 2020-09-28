@@ -35,4 +35,4 @@ Still working out some bugs/still wanting to add too:
 
 ### Wireframe
 
-![Wireframe](file:///Users/brittybear/Desktop/Screen%20Shot%202020-09-27%20at%206.07.20%20PM.png)
+![Wireframe](https://i.imgur.com/yuBF1xg.jpg)
